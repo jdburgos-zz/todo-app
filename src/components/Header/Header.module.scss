@@ -1,0 +1,12 @@
+.header {
+  &__background {
+    img {
+      width: 100%;
+    }
+  }
+
+  &__title {
+    letter-spacing: .3em;
+    color: var(--c-very-light-grayish-blue);
+  }
+}

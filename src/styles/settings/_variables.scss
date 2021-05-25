@@ -1,0 +1,21 @@
+:root {
+  --f-primary: 'Josefin Sans';
+  --font-size: 18px;
+  --c-bright-blue: hsl(220, 98%, 61%);
+  --c-very-light-grayish-blue: hsl(236, 33%, 92%);
+  --c-light-grayish-blue: hsl(233, 11%, 84%);
+  --c-dark-grayish-blue: hsl(236, 9%, 61%);
+  --c-very-dark-grayish-blue: hsl(233, 14%, 35%);
+
+  // Light Theme
+  --c-very-light-gray: hsl(0, 0%, 98%);
+
+  // Dark Theme
+  --c-very-dark-blue: hsl(235, 21%, 11%);
+  --c-very-dark-desaturated-blue: hsl(235, 24%, 19%);
+}
+
+// Breakpoints
+$b-small: 576px;
+$b-medium: 768px;
+$b-xlarge: 1200px;

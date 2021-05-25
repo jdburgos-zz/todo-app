@@ -1,0 +1,9 @@
+.input {
+  &.error {
+    border: 1px solid var(--c-red);
+  }
+
+  &:focus {
+    border: 1px solid var(--c-modarate-cyan);
+  }
+}
