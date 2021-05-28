@@ -6,12 +6,11 @@ import TodosContext from './TodosContex';
 
 const TodosProvider = props => {
   const [todos, setTodos] = useState([]);
-
-  const setTodosHandler = todos => {
-    setTodos(todos);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   const getTodosHandler =  async () => {
+    setIsLoading(true);
+
     const response = await fetch('https://react-todo-app-92619-default-rtdb.firebaseio.com/todos.json');
     const data = await response.json();
     const todosMapped = [];
@@ -25,11 +24,12 @@ const TodosProvider = props => {
     }
 
     setTodos(todosMapped);
+    setIsLoading(false);
   };
 
   const todosContext = {
     todos,
-    setTodos: setTodosHandler,
+    isLoading,
     getTodos: getTodosHandler,
   };
 

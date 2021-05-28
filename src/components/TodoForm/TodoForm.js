@@ -38,7 +38,7 @@ const TodoForm = () => {
   return (
     <Input
       ref={ todoRef }
-      className={ styles['pledge__footer-input-control'] }
+      className={ styles['todo-input-control'] }
       input={ {
         id: 'todo-add',
         type: 'text'

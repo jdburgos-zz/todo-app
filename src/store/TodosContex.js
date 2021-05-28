@@ -3,7 +3,7 @@ import React from 'react';
 
 const TodosContext = React.createContext({
   todos: [],
-  setTodos: ([]) => {},
+  isLoading: false,
   getTodos: options => {},
 });
 

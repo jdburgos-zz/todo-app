@@ -11,32 +11,26 @@ import TodosContext from '../../store/TodosContex';
 const TodoList = () => {
   const todosCtx = useContext(TodosContext);
 
-  const getTodosHandler = useCallback( async () => {
-    const response = await fetch('https://react-todo-app-92619-default-rtdb.firebaseio.com/todos.json');
-    const data = await response.json();
-    const todosMapped = [];
-
-    for (const key in data) {
-      todosMapped.push({
-        id: key,
-        title: data[key].title,
-        active: data[key].active
-      });
-    }
-
-    todosCtx.setTodos(todosMapped);
+  useEffect(() => {
+    todosCtx.getTodos();
   }, []);
 
-  useEffect(() => {
-    getTodosHandler();
-  }, [getTodosHandler]);
-
   const todosList = todosCtx.todos.map((todo, index) => <Todo key={index} todo={todo} />)
+
+  let content = <p>There aren't todos</p>;
+
+  if (todosList.length > 0) {
+    content = todosList;
+  }
+
+  if (todosCtx.isLoading) {
+    content = <p>Loading...</p>;
+  }
 
   return (
     <Wrapper>
       <div>
-        { todosList }
+        { content }
       </div>
     </Wrapper>
   );
