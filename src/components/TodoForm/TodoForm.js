@@ -1,52 +1,59 @@
 /** React core **/
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 /** Components **/
 import Input from '../ui/Input/Input';
+import Card from "../ui/Card/Card";
 
 /** Styles **/
 import styles from './TodoForm.module.scss';
 
-/** Contexts **/
-import TodosContext from '../../store/TodosContex';
+/** Services **/
+import TodoDataService from "../../services/todo.service";
 
 const TodoForm = () => {
   const [error, setError] = useState(false);
   const todoRef = useRef();
-  const todosCtx = useContext(TodosContext);
 
   const inputAddTodoHandler = () => {
+    const todoText = todoRef.current.value.trim();
+
+    setError(todoText === '');
   };
 
-  const submitTodoHandler = async (e) => {
+  const submitTodoHandler = async e => {
     if (e.key === 'Enter') {
-      await fetch('https://react-todo-app-92619-default-rtdb.firebaseio.com/todos.json', {
-        method: 'POST',
-        body: JSON.stringify({
-          title: todoRef.current.value,
-          active: true
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const todoText = todoRef.current.value.trim();
 
-      todosCtx.getTodos();
+      if (todoText !== '') {
+        setError(false);
+
+        await TodoDataService.create({
+          title: todoText,
+          active: true
+        });
+
+        todoRef.current.value = '';
+      } else {
+        setError(true);
+      }
     }
   };
 
   return (
-    <Input
-      ref={ todoRef }
-      className={ styles['todo-input-control'] }
-      input={ {
-        id: 'todo-add',
-        type: 'text'
-      } }
-      error={ error }
-      onChange={ inputAddTodoHandler }
-      onKeyUp={ submitTodoHandler }
-    />
+    <Card className={ styles['todo-form'] }>
+      <Input
+        ref={ todoRef }
+        className={ styles['todo-input-control'] }
+        input={ {
+          id: 'todo-add',
+          type: 'text'
+        } }
+        error={ error }
+        onChange={ inputAddTodoHandler }
+        onKeyUp={ submitTodoHandler }
+      />
+    </Card>
   );
 };
 

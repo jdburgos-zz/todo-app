@@ -1,0 +1,17 @@
+.todo-list {
+  margin-bottom: 15px;
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--c-dark-grayish-blue);
+  }
+
+  &__action {
+    cursor: pointer;
+  }
+}

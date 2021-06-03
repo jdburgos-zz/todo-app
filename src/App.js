@@ -9,18 +9,13 @@ import TodoForm from './components/TodoForm/TodoForm';
 import Container from './components/layout/Container/Container';
 import TodoFilter from './components/TodoFilter/TodoFilter';
 
-/** Providers **/
-import TodosProvider from './store/TodosProvider';
-
 const App = () => (
   <Wrapper>
     <Header />
     <Container>
-      <TodosProvider>
-        <TodoForm />
-        <TodoList />
-        <TodoFilter />
-      </TodosProvider>
+      <TodoForm />
+      <TodoList />
+      <TodoFilter />
     </Container>
   </Wrapper>
 );

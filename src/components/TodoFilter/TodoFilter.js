@@ -1,5 +1,8 @@
+/** Components **/
+import Card from "../ui/Card/Card";
+
 const TodoFilter = () => (
-  <div></div>
+  <Card>Filters</Card>
 );
 
 export default TodoFilter;

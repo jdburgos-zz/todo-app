@@ -1,9 +1,12 @@
 .input {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--c-dark-grayish-blue);
+
   &.error {
     border: 1px solid var(--c-red);
-  }
-
-  &:focus {
-    border: 1px solid var(--c-modarate-cyan);
   }
 }
