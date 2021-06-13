@@ -10,12 +10,12 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Install dependencies
       - uses: actions/checkout@v2
+      - name: Install dependencies
       - run: npm i -g react-scripts
 
-      - name: Build
       - uses: actions/checkout@v2
+      - name: Build
       - run: npm run build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
