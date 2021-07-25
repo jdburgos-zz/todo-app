@@ -23,6 +23,14 @@ class TodoDataService {
   deleteAll() {
     return db.remove();
   }
+
+  deleteCompleted(todo) {
+    for (const element of todo) {
+      const { id, active } = element;
+
+      !active && this.delete(id);
+    }
+  }
 }
 
 export default new TodoDataService();

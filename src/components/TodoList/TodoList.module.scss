@@ -1,6 +1,12 @@
 .todo-list {
   margin-bottom: 15px;
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__actions {
     display: flex;
     justify-content: space-between;

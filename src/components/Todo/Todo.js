@@ -1,5 +1,6 @@
 /** React core **/
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 
 /** Styles **/
 import styles from './Todo.module.scss';
@@ -39,6 +40,14 @@ const Todo = props => {
       <img className={ styles['todo__cross'] } src={`${process.env.PUBLIC_URL}/images/icon-cross.svg`} alt="cross" onClick={ deleteTodoHandler }/>
     </div>
   );
+};
+
+Todo.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    active: PropTypes.bool.isRequired
+  }).isRequired
 };
 
 export default Todo;

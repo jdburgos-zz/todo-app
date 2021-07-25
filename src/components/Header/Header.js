@@ -1,3 +1,6 @@
+/** React core **/
+import React from 'react';
+
 /** Components **/
 import Container from '../layout/Container/Container';
 

@@ -1,9 +1,10 @@
 /** React core **/
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 /** Components **/
 import Wrapper from '../helpers/Wrapper/Wrapper';
 import Card from "../ui/Card/Card";
+import Loader from "../ui/Loader/Loader";
 import Todo from '../Todo/Todo';
 
 /** Styles **/
@@ -13,45 +14,61 @@ import styles from './TodoList.module.scss';
 import TodoDataService from "../../services/todo.service";
 
 const TodoList = () => {
-  const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState([]);
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  const getTodos = items => {
-    const todosMapped = [];
+  const getTodo = items => {
+    setTimeout(() => {
+      const todoMapped = [];
 
     items.forEach((item) => {
       const key = item.key;
       const data = item.val();
 
-      todosMapped.push({
+      todoMapped.push({
         id: key,
         title: data.title,
         active: data.active
       });
     });
 
-    setCount(todosMapped.reduce((prev, curr) => {
+    setCount(todoMapped.reduce((prev, curr) => {
       const added = curr.active ? 1 : 0;
 
       return prev + added;
     }, 0));
-    setTodos(todosMapped);
+    setTodo(todoMapped);
+    }, 800)
   };
 
   useEffect(() => {
-    TodoDataService.getAll().on("value", getTodos);
+    TodoDataService.getAll().on("value", getTodo);
+    setLoading(false);
 
     return () => {
-      TodoDataService.getAll().off("value", getTodos);
+      TodoDataService.getAll().off("value", getTodo);
     };
   }, []);
 
-  const todosList = todos.map((todo, index) => <Todo key={index} todo={todo} />)
+  const clearTodoCompletedHandler = () => {
+    TodoDataService.deleteCompleted(todo);
+  };
 
-  let content = <p>There aren't todos</p>;
+  const clearAllHandler = () => {
+    TodoDataService.deleteAll();
+  };
 
-  if (todosList.length > 0) {
-    content = todosList;
+  const todoList = todo.map((todo, index) => <Todo key={index} todo={todo} />)
+  let content = <p>There aren&apos;t todos</p>;
+  const hasTodo = todoList.length > 0;
+
+  if (loading) {
+    content = <Loader/>
+  }
+
+  if (hasTodo) {
+    content = todoList;
   }
 
   return (
@@ -59,8 +76,9 @@ const TodoList = () => {
       <Card className={ styles['todo-list'] }>
         <div className={ styles['todo-list__content'] }>{ content }</div>
         <div className={ styles['todo-list__actions'] }>
-          <div>{ count } items left</div>
-          <div className={ styles['todo-list__action'] }>Clear Completed</div>
+          { hasTodo && <div>{ count } items left</div> }
+          { hasTodo && <div className={ styles['todo-list__action'] } onClick={ clearAllHandler }>Clear All</div> }
+          { hasTodo && <div className={ styles['todo-list__action'] } onClick={ clearTodoCompletedHandler }>Clear Completed</div> }
         </div>
       </Card>
     </Wrapper>
