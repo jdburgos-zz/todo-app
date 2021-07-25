@@ -2,10 +2,8 @@
 import React from 'react';
 
 /** Components **/
-import Card from "../ui/Card/Card";
+import Card from '../ui/Card/Card';
 
-const TodoFilter = () => (
-  <Card>Filters</Card>
-);
+const TodoFilter = () => <Card>Filters</Card>;
 
 export default TodoFilter;

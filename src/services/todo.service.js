@@ -1,7 +1,7 @@
 /** Config **/
-import firebase from "../config/firebase";
+import firebase from '../config/firebase';
 
-const db = firebase.ref("/todos");
+const db = firebase.ref('/todos');
 
 class TodoDataService {
   getAll() {

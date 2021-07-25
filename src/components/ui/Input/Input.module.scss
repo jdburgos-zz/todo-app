@@ -1,10 +1,10 @@
 .input {
-  width: 100%;
-  outline: none;
   border: none;
-  font-weight: 400;
-  font-size: 13px;
   color: var(--c-dark-grayish-blue);
+  font-size: 13px;
+  font-weight: 400;
+  outline: none;
+  width: 100%;
 
   &.error {
     border: 1px solid var(--c-red);

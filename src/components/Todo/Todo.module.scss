@@ -1,19 +1,19 @@
 .todo {
   $todo: &;
 
+  align-items: center;
+  border-bottom: 1px solid var(--c-light-grayish-blue);
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 15px;
-  border-bottom: 1px solid var(--c-light-grayish-blue);
   user-select: none;
   width: calc(100% - 30px);
 
   &--checked {
     #{$todo} {
       &__check {
-        background: rgb(87,221,255);
-        background: linear-gradient(135deg, rgba(87,221,255,1) 0%, rgba(192,88,243,1) 100%);
+        background: rgb(87, 221, 255);
+        background: linear-gradient(135deg, rgba(87, 221, 255, 1) 0%, rgba(192, 88, 243, 1) 100%);
 
         &:before {
           display: none;
@@ -21,46 +21,46 @@
       }
 
       &__title {
-        text-decoration: line-through;
         color: var(--c-light-grayish-blue);
+        text-decoration: line-through;
       }
     }
   }
 
   &__check {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
+    align-items: center;
     background-color: var(--c-light-grayish-blue);
     border-radius: 50%;
-    justify-content: center;
-    align-items: center;
+    cursor: pointer;
     display: flex;
+    height: 20px;
+    justify-content: center;
+    width: 20px;
 
     &:before {
-      content: '';
-      display: block;
-      width: 18px;
-      height: 18px;
       background-color: var(--c-white);
       border-radius: 50%;
+      content: '';
+      display: block;
+      height: 18px;
+      width: 18px;
     }
 
     &:hover {
-      background: rgb(87,221,255);
-      background: linear-gradient(135deg, rgba(87,221,255,1) 0%, rgba(192,88,243,1) 100%);
+      background: rgb(87, 221, 255);
+      background: linear-gradient(135deg, rgba(87, 221, 255, 1) 0%, rgba(192, 88, 243, 1) 100%);
     }
   }
 
   &__title {
-    margin: 0;
-    font-weight: 400;
     font-size: 14px;
+    font-weight: 400;
+    margin: 0;
   }
 
   &__cross {
     cursor: pointer;
-    width: 12px;
     height: 12px;
+    width: 12px;
   }
 }

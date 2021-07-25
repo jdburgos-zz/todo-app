@@ -1,0 +1,12 @@
+{
+  plugins: ["stylelint-order", "stylelint-scss", "stylelint-prettier"],
+  extends: ["stylelint-config-recommended-scss", "stylelint-config-prettier", "stylelint-prettier/recommended"],
+  rules: {
+    "order/order": ["custom-properties", "declarations"],
+    "order/properties-alphabetical-order": true,
+    "selector-pseudo-element-no-unknown": [
+      true
+    ],
+    "prettier/prettier": true
+  }
+}

@@ -18,8 +18,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "npx gh-pages -b gh-pages -d build"
+    "prettier": "npx prettier --write .",
+    "stylelint": "npx stylelint '**/*.scss' --fix",
+    "format": "npm run prettier && npm run stylelint",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -40,10 +42,42 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.1",
+    "prettier": "^2.3.2",
+    "prettier-eslint": "^12.0.0",
+    "prettier-stylelint": "^0.4.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended-scss": "^4.3.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.2.0",
+    "stylelint-scss": "^3.20.1"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{scss,css}": [
+      "stylelint --syntax scss --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": "eslint --cache --fix"
   }
 }

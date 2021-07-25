@@ -9,14 +9,15 @@ test('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <Input
-      className={ 'test' }
-      input={ {
+      className={'test'}
+      input={{
         id: 'todo-add',
-        type: 'text'
-      } }
-      error={ false }
-      onChange={ () => {} }
-      onKeyUp={ () => {} }
-     />, div
+        type: 'text',
+      }}
+      error={false}
+      onChange={() => {}}
+      onKeyUp={() => {}}
+    />,
+    div,
   );
 });

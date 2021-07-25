@@ -1,9 +1,9 @@
-@import "src/styles/settings/variables";
+@import 'src/styles/settings/variables';
 
 .container {
-  width: calc(100% - 50px);
   margin: 0 auto;
   transform: translateY(-185px);
+  width: calc(100% - 50px);
 
   @media only screen and (min-width: $b-medium) {
     max-width: 650px;

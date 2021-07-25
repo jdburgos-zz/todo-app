@@ -3,13 +3,13 @@ import React, { useRef, useState } from 'react';
 
 /** Components **/
 import Input from '../ui/Input/Input';
-import Card from "../ui/Card/Card";
+import Card from '../ui/Card/Card';
 
 /** Styles **/
 import styles from './TodoForm.module.scss';
 
 /** Services **/
-import TodoDataService from "../../services/todo.service";
+import TodoDataService from '../../services/todo.service';
 
 const TodoForm = () => {
   const [error, setError] = useState(false);
@@ -30,7 +30,7 @@ const TodoForm = () => {
 
         await TodoDataService.create({
           title: todoText,
-          active: true
+          active: true,
         });
 
         todoRef.current.value = '';
@@ -41,17 +41,17 @@ const TodoForm = () => {
   };
 
   return (
-    <Card className={ styles['todo-form'] }>
+    <Card className={styles['todo-form']}>
       <Input
-        ref={ todoRef }
-        className={ styles['todo-input-control'] }
-        input={ {
+        ref={todoRef}
+        className={styles['todo-input-control']}
+        input={{
           id: 'todo-add',
-          type: 'text'
-        } }
-        error={ error }
-        onChange={ inputAddTodoHandler }
-        onKeyUp={ submitTodoHandler }
+          type: 'text',
+        }}
+        error={error}
+        onChange={inputAddTodoHandler}
+        onKeyUp={submitTodoHandler}
       />
     </Card>
   );
