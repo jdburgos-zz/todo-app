@@ -18,6 +18,14 @@ const TodoList = () => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    TodoDataService.getAll().on('value', getTodo);
+
+    return () => {
+      TodoDataService.getAll().off('value', getTodo);
+    };
+  }, []);
+
   const getTodo = items => {
     setTimeout(() => {
       const todoMapped = [];
@@ -41,17 +49,9 @@ const TodoList = () => {
         }, 0),
       );
       setTodo(todoMapped);
+      setLoading(false);
     }, 800);
   };
-
-  useEffect(() => {
-    TodoDataService.getAll().on('value', getTodo);
-    setLoading(false);
-
-    return () => {
-      TodoDataService.getAll().off('value', getTodo);
-    };
-  }, []);
 
   const clearTodoCompletedHandler = () => {
     TodoDataService.deleteCompleted(todo);
@@ -62,34 +62,31 @@ const TodoList = () => {
   };
 
   const todoList = todo.map((todo, index) => <Todo key={index} todo={todo} />);
-  let content = <p>There aren&apos;t todos</p>;
+  let content = <Loader />;
   const hasTodo = todoList.length > 0;
+  const todoActions = (
+    <div className={styles['todo-list__actions']}>
+      <div>{count} items left</div>
+      <div className={styles['todo-list__action']} onClick={clearAllHandler}>
+        Clear All
+      </div>
+      <div className={styles['todo-list__action']} onClick={clearTodoCompletedHandler}>
+        Clear Completed
+      </div>
+    </div>
+  );
 
   if (loading) {
-    content = <Loader />;
+    return <Loader />;
   }
 
-  if (hasTodo) {
-    content = todoList;
-  }
+  content = hasTodo ? todoList : <p>There aren&apos;t todos</p>;
 
   return (
     <Wrapper>
       <Card className={styles['todo-list']}>
         <div className={styles['todo-list__content']}>{content}</div>
-        <div className={styles['todo-list__actions']}>
-          {hasTodo && <div>{count} items left</div>}
-          {hasTodo && (
-            <div className={styles['todo-list__action']} onClick={clearAllHandler}>
-              Clear All
-            </div>
-          )}
-          {hasTodo && (
-            <div className={styles['todo-list__action']} onClick={clearTodoCompletedHandler}>
-              Clear Completed
-            </div>
-          )}
-        </div>
+        {hasTodo && todoActions}
       </Card>
     </Wrapper>
   );
