@@ -10,7 +10,6 @@ import Header from './components/Header/Header';
 import TodoList from './components/TodoList/TodoList';
 import TodoForm from './components/TodoForm/TodoForm';
 import Container from './components/layout/Container/Container';
-import TodoFilter from './components/TodoFilter/TodoFilter';
 
 const App = () => (
   <Wrapper>
@@ -18,7 +17,6 @@ const App = () => (
     <Container>
       <TodoForm />
       <TodoList />
-      <TodoFilter />
     </Container>
   </Wrapper>
 );
