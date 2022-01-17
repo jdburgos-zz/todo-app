@@ -4,6 +4,7 @@ This project is for learn and practice ReactJs.\
 See the app in production - [Todo app](https://react-todo-app-92619.web.app/)
 
 ## Env variables
+
 create .env file in the root project folder and put inside the following variables to setup the local environment:
 
 REACT_APP_API_KEY\
@@ -13,7 +14,6 @@ REACT_APP_PROJECT_ID\
 REACT_APP_STORAGE_BUCKET\
 REACT_APP_MESSAGING_SENDER_ID\
 REACT_APP_APP_ID
-
 
 ## Available Scripts
 
