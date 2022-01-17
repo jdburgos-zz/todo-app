@@ -1,6 +1,3 @@
-/** React core **/
-import React from 'react';
-
 /** Styles **/
 import './styles/styles.scss';
 

@@ -12,10 +12,10 @@
   &--checked {
     #{$todo} {
       &__check {
-        background: rgb(87, 221, 255);
-        background: linear-gradient(135deg, rgba(87, 221, 255, 1) 0%, rgba(192, 88, 243, 1) 100%);
+        background: rgb(87 221 255);
+        background: linear-gradient(135deg, rgb(87 221 255 / 100%) 0%, rgb(192 88 243 / 100%) 100%);
 
-        &:before {
+        &::before {
           display: none;
         }
       }
@@ -37,7 +37,7 @@
     justify-content: center;
     width: 20px;
 
-    &:before {
+    &::before {
       background-color: var(--c-white);
       border-radius: 50%;
       content: '';
@@ -47,8 +47,8 @@
     }
 
     &:hover {
-      background: rgb(87, 221, 255);
-      background: linear-gradient(135deg, rgba(87, 221, 255, 1) 0%, rgba(192, 88, 243, 1) 100%);
+      background: rgb(87 221 255);
+      background: linear-gradient(135deg, rgb(87 221 255 / 100%) 0%, rgb(192 88 243 / 100%) 100%);
     }
   }
 

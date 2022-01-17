@@ -1,5 +1,5 @@
 /** React core **/
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /** Components **/
 import Wrapper from '../helpers/Wrapper/Wrapper';
@@ -13,33 +13,36 @@ import styles from './TodoList.module.scss';
 /** Services **/
 import TodoDataService from '../../services/todo.service';
 
+/** Types **/
+import { TodoType } from '../../types/todo.type';
+
 const TodoList = () => {
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState<TodoType[]>([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    TodoDataService.getAll().on('value', getTodo);
+    const getData = async () => {
+      try {
+        const snapshot = await TodoDataService.getAll();
 
-    return () => {
-      TodoDataService.getAll().off('value', getTodo);
+        if (snapshot.exists()) {
+          getTodo(snapshot.val());
+        }
+      } catch (e) {
+        console.log(e);
+      }
     };
+
+    getData();
   }, []);
 
-  const getTodo = items => {
+  const getTodo = (items: { [key: string]: { active: boolean; title: string } }) => {
     setTimeout(() => {
-      const todoMapped = [];
-
-      items.forEach(item => {
-        const key = item.key;
-        const data = item.val();
-
-        todoMapped.push({
-          id: key,
-          title: data.title,
-          active: data.active,
-        });
-      });
+      const todoMapped: TodoType[] = Object.entries(items).map(item => ({
+        id: item[0],
+        ...item[1],
+      }));
 
       setCount(
         todoMapped.reduce((prev, curr) => {
@@ -62,7 +65,7 @@ const TodoList = () => {
   };
 
   const todoList = todo.map((todo, index) => <Todo key={index} todo={todo} />);
-  let content = <Loader />;
+  let content: any = <Loader />;
   const hasTodo = todoList.length > 0;
   const todoActions = (
     <div className={styles['todo-list__actions']}>

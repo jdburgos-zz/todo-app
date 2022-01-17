@@ -1,11 +1,10 @@
 /** React core **/
 import ReactDOM from 'react-dom';
-import React from 'react';
 
 /** Components **/
-import TodoList from './TodoList';
+import TodoForm from './TodoForm';
 
 test('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<TodoList />, div);
+  ReactDOM.render(<TodoForm />, div);
 });

@@ -13,30 +13,34 @@ import TodoDataService from '../../services/todo.service';
 
 const TodoForm = () => {
   const [error, setError] = useState(false);
-  const todoRef = useRef();
+  const todoRef = useRef<HTMLInputElement>(null);
 
-  const inputAddTodoHandler = () => {
-    const todoText = todoRef.current.value.trim();
+  const inputAddTodoHandler = (): void => {
+    const todoText = todoRef.current?.value.trim();
 
     setError(todoText === '');
   };
 
-  const submitTodoHandler = async e => {
-    if (e.key === 'Enter') {
-      const todoText = todoRef.current.value.trim();
+  const submitTodoHandler = async (e: React.KeyboardEvent): Promise<void> => {
+    try {
+      if (e.key === 'Enter') {
+        const todoText = todoRef.current?.value.trim();
 
-      if (todoText !== '') {
-        setError(false);
+        if (todoText !== '') {
+          setError(false);
 
-        await TodoDataService.create({
-          title: todoText,
-          active: true,
-        });
+          await TodoDataService.create({
+            title: todoText,
+            active: true,
+          });
 
-        todoRef.current.value = '';
-      } else {
-        setError(true);
+          todoRef.current!.value = '';
+        } else {
+          setError(true);
+        }
       }
+    } catch (e) {
+      console.log(e);
     }
   };
 

@@ -1,5 +1,4 @@
 /** React core **/
-import React from 'react';
 import ReactDOM from 'react-dom';
 
 /** Components **/
@@ -7,6 +6,7 @@ import Input from './Input';
 
 test('renders without crashing', () => {
   const div = document.createElement('div');
+
   ReactDOM.render(
     <Input
       className={'test'}
@@ -16,7 +16,8 @@ test('renders without crashing', () => {
       }}
       error={false}
       onChange={() => {}}
-      onKeyUp={() => {}}
+      onKeyUp={async () => {}}
+      ref={null}
     />,
     div,
   );

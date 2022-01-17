@@ -1,16 +1,15 @@
 /** React core **/
 import ReactDOM from 'react-dom';
-import React from 'react';
 
 /** Components **/
-import Wrapper from './Wrapper';
+import Container from './Container';
 
 test('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <Wrapper>
-      <div>Wrapper</div>
-    </Wrapper>,
+    <Container>
+      <div>Container</div>
+    </Container>,
     div,
   );
 });

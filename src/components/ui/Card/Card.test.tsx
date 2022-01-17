@@ -1,11 +1,15 @@
 /** React core **/
 import ReactDOM from 'react-dom';
-import React from 'react';
 
 /** Components **/
-import TodoForm from './TodoForm';
+import Card from './Card';
 
 test('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<TodoForm />, div);
+  ReactDOM.render(
+    <Card className="card">
+      <div>Card</div>
+    </Card>,
+    div,
+  );
 });

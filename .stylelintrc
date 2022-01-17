@@ -1,11 +1,20 @@
 {
-  plugins: ["stylelint-order", "stylelint-scss", "stylelint-prettier"],
-  extends: ["stylelint-config-recommended-scss", "stylelint-config-prettier", "stylelint-prettier/recommended"],
-  rules: {
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
+    "stylelint-config-recommended-scss",
+    "stylelint-config-prettier",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": ["stylelint-order", "stylelint-scss", "stylelint-prettier"],
+  "rules": {
     "order/order": ["custom-properties", "declarations"],
     "order/properties-alphabetical-order": true,
-    "selector-pseudo-element-no-unknown": [
-      true
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
     ],
     "prettier/prettier": true
   }
