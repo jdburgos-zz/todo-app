@@ -67,3 +67,9 @@ Lints scss/css styles.
 ### `npm analyze`
 
 Analyzes the bundle sizes.
+
+## Deploy in Firebase
+
+Login in to firebase: `firebase login`\
+Build the project: `npm run build`\
+Deploy in firebase: `firebase deploy`
